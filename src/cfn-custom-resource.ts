@@ -1,6 +1,6 @@
 import 'source-map-support/register';
 import { CloudFormationCustomResourceEvent, Context } from 'aws-lambda';
-import cfnresponse from 'cfn-response';
+import cfnresponse from 'cfn-response-promise';
 
 /*
  * CloudFormation properties supported by the custom resource.
@@ -50,16 +50,16 @@ export const handler = async (event: CloudFormationCustomResourceEvent, context:
   try {
     console.info(JSON.stringify({ event, context }), null, 2);
 
-    const attributes = {
-      Arn: 'TODO',
+    const attributes: ResourceAttributes = {
+      SecretArn: 'TODO',
     };
 
-    cfnresponse.send(event, context, cfnresponse.SUCCESS, attributes, getPhysicalResourceId(event));
+    await cfnresponse.send(event, context, cfnresponse.SUCCESS, attributes, getPhysicalResourceId(event));
   } catch (err) {
     const response = {
       Error: err.message,
     };
-    cfnresponse.send(event, context, cfnresponse.FAILED, response, getPhysicalResourceId(event));
+    await cfnresponse.send(event, context, cfnresponse.FAILED, response, getPhysicalResourceId(event));
   }
 };
 

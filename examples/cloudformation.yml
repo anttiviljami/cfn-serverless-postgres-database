@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  Database:
+    Type: Custom::ServerlessPostgresDatabase
+    Properties:
+      ServiceToken: !ImportValue ServerlessDatabaseCustomResourceLambda
+Outputs:
+  DatabaseSecret:
+    Value: !GetAtt Database.SecretArn
