@@ -4,6 +4,8 @@ import cfnresponse from 'cfn-response-promise';
 import { getPhysicalResourceId, validateEvent } from './event';
 import { getProperties, ResourceAttributes } from './resource';
 import { createDatabaseAndUser } from './aurora';
+import { describeServerlessCluster } from './rds';
+import { putRDSSecret } from './secret';
 
 /**
  * Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster
@@ -19,11 +21,29 @@ export const handler = async (event: CloudFormationCustomResourceEvent, context:
     const props = getProperties(event);
 
     if (event.RequestType === 'Create') {
-      const { username } = await createDatabaseAndUser(props);
+      console.info('Creating database and user...');
+      const { username, password, database } = await createDatabaseAndUser(props);
       console.debug({ username });
 
+      const { Endpoint: host, Port: port, DBClusterIdentifier: dbClusterIdentifier } = await describeServerlessCluster(
+        props.ClusterArn,
+      );
+
+      console.info('Creating secret in Secrets Manager...');
+      const secretArn = await putRDSSecret({
+        secretName: props.SecretName || `rds-credentials/${database}/${username}`,
+        secretValue: {
+          username,
+          password,
+          engine: 'postgres',
+          host,
+          port,
+          dbClusterIdentifier,
+        },
+      });
+
       const attributes: ResourceAttributes = {
-        SecretArn: 'TODO',
+        SecretArn: secretArn,
       };
       await cfnresponse.send(event, context, cfnresponse.SUCCESS, attributes, getPhysicalResourceId(event));
     }
