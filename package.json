@@ -1,5 +1,5 @@
 {
-    "name": "cfn-custom-resource-aurora-serverless-postgres-database",
+    "name": "cfn-serverless-postgres-database",
     "description": "Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster",
     "version": "0.0.1",
     "private": true,
