@@ -5,7 +5,7 @@ Resources:
   ServerlessDatabaseCustomResourceLambda:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: dist/cfn-custom-resource.handler
+      Handler: dist/index.handler
       Runtime: nodejs12.x
       MemorySize: 128
       Timeout: 300
