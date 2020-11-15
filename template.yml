@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster
+Resources:
+  Custom:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: dist/cfn-custom-resource.handler
+      Runtime: nodejs12.x
+      MemorySize: 128
+      Timeout: 100
+      Description: Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster
+      Policies:
+        - AWSLambdaBasicExecutionRole

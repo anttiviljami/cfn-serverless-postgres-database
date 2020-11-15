@@ -1,0 +1,20 @@
+{
+    "name": "cfn-custom-resource-aurora-serverless-postgres-database",
+    "description": "Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "cfn-response": "^1.0.1",
+        "source-map-support": "^0.5.19"
+    },
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.64",
+        "@types/cfn-response": "^1.0.4",
+        "@types/node": "^14.14.7",
+        "aws-sdk": "^2.792.0",
+        "typescript": "^4.0.5"
+    },
+    "scripts": {
+        "build": "tsc"
+    }
+}
