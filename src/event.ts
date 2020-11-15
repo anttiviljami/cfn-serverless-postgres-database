@@ -6,20 +6,20 @@ import * as resource from './resource';
  */
 export const validateEvent = (event: CloudFormationCustomResourceEvent) => {
   const errors: string[] = [];
-  const resourceProperties = resource.getProperties(event);
+  const props = resource.getProperties(event);
 
-  if (!resourceProperties) {
+  if (!props) {
     errors.push('Invalid lambda payload. Missing ResourceProperties from event');
   }
 
-  for (const required of resource.RequiredProperties) {
-    if (false === required in resourceProperties) {
-      errors.push(`${required} is a required property`);
+  for (const propName of resource.RequiredProperties) {
+    if (propName in props === false) {
+      errors.push(`${propName} is a required property`);
     }
   }
 
   return {
-    valid: errors.length > 0,
+    valid: errors.length === 0,
     errors,
   };
 };

@@ -15,10 +15,6 @@ export interface ResourceProperties {
    */
   ClusterSecret: string;
   /**
-   * The name of the schema to create the database in. Default schema: public
-   */
-  DatabaseSchema?: string;
-  /**
    * The name of the database to create.
    */
   DatabaseName: string;

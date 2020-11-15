@@ -6,12 +6,8 @@
     "LogicalResourceId": "name of resource in template",
     "StackId": "arn:aws:cloudformation:us-east-2:namespace:stack/stack-name/guid",
     "ResourceProperties": {
-        "key1": "string",
-        "key2": [
-            "list"
-        ],
-        "key3": {
-            "key4": "map"
-        }
+        "ClusterArn": "arn:aws:rds:eu-central-1:921809084865:cluster:io-viljami-serverless-postgres",
+        "ClusterSecret": "arn:aws:secretsmanager:eu-central-1:921809084865:secret:aurora_postgres_master-F2UPLb",
+        "DatabaseName": "hello"
     }
 }
