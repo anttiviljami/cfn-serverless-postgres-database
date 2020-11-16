@@ -31,6 +31,6 @@ export const getPhysicalResourceId = (event: CloudFormationCustomResourceEvent) 
   if ('PhysicalResourceId' in event) {
     return event.PhysicalResourceId;
   }
-  const { ClusterArn, DatabaseName } = resource.getProperties(event);
-  return `${ClusterArn}/${DatabaseName}`;
+  const { ClusterARN, DatabaseName } = resource.getProperties(event);
+  return `${ClusterARN}/${DatabaseName}`;
 };

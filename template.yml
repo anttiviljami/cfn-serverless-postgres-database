@@ -12,6 +12,9 @@ Resources:
       Description: Custom CloudFormation Resource to create a database and credentials in an Aurora Serverless PostgreSQL cluster
       Policies:
         - AWSLambdaBasicExecutionRole
+        - AmazonRDSReadOnlyAccess
+        - SecretsManagerReadWrite
+        - AmazonRDSDataFullAccess
 Outputs:
   ServerlessDatabaseCustomResourceLambda:
     Description: ARN for Serverless Database Custom Resource Lambda

@@ -1,15 +1,15 @@
-import { CloudFormationCustomResourceEvent } from 'aws-lambda';
+import { CloudFormationCustomResourceEvent, CloudFormationCustomResourceUpdateEvent } from 'aws-lambda';
 
 /*
  * CloudFormation properties supported by the custom resource.
  */
-export const RequiredProperties = ['ClusterArn', 'DatabaseName'];
+export const RequiredProperties = ['ClusterARN', 'DatabaseName'];
 export interface ResourceProperties {
   ServiceToken: string;
   /**
    * The ARN of the Aurora Serverless DB cluster to create database in.
    */
-  ClusterArn: string;
+  ClusterARN: string;
   /**
    * The name or ARN of the secret that enables access to the DB cluster via the RDS Data API.
    */
@@ -43,3 +43,9 @@ export interface ResourceAttributes {
  */
 export const getProperties = (event: CloudFormationCustomResourceEvent) =>
   event.ResourceProperties as ResourceProperties;
+
+/**
+ * Get typed resource properties from event
+ */
+export const getOldProperties = (event: CloudFormationCustomResourceUpdateEvent) =>
+  event.OldResourceProperties as ResourceProperties;

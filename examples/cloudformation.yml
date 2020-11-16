@@ -6,7 +6,7 @@ Resources:
       ServiceToken: !ImportValue ServerlessDatabaseCustomResourceLambda
       ClusterARN: arn:aws:rds:eu-central-1:921809084865:cluster:io-viljami-serverless-postgres
       ClusterSecret: arn:aws:secretsmanager:eu-central-1:921809084865:secret:aurora_postgres_master-F2UPLb
-      DatabaseName: test_database
+      DatabaseName: vikuos3
 Outputs:
   DatabaseSecret:
     Value: !GetAtt Database.SecretArn

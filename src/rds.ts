@@ -8,5 +8,9 @@ export const describeServerlessCluster = async (clusterArn: string) => {
       DBClusterIdentifier: clusterArn,
     })
     .promise();
-  return res.DBClusters[0];
+  return {
+    dbClusterIdentifier: res.DBClusters[0].DBClusterIdentifier,
+    host: res.DBClusters[0].Endpoint,
+    port: res.DBClusters[0].Port,
+  };
 };
