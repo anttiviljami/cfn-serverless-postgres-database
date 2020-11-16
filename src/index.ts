@@ -140,7 +140,10 @@ const updateEvent = async (event: CloudFormationCustomResourceUpdateEvent): Prom
 const deleteEvent = async (event: CloudFormationCustomResourceDeleteEvent) => {
   const props = resource.getProperties(event);
 
-  console.info('Deleting old database user...');
+  // TODO: add prop to drop database on delete
+  // not sure why someone would want that though...
+
+  console.info('Deleting database user...');
   const { deletedUser } = await deleteDatabaseUser(props);
   console.debug({ deletedUser });
 
