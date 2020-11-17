@@ -11,7 +11,7 @@ Creates the following resources:
 
 ## Quick Start
 
-Deploy the SAM application in your account:
+Deploy the custom resource in your account:
 
 ```
 npm install
@@ -42,7 +42,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 ```yaml
 Type: Custom::ServerlessPostgresDatabase
-Properties: 
+Properties:
   ServiceToken: String
   ClusterARN: String
   ClusterSecret: String
@@ -140,3 +140,5 @@ The JSON value of the Secrets Manager secret created by this custom resource loo
   "dbClusterIdentifier": "mycluster"
 }
 ```
+
+The secret can be used directly to access the [Aurora Serverless Data API](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/data-api.html)
